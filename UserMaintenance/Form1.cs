@@ -25,6 +25,7 @@ namespace UserMaintenance
             label1.Text = Resource_felirat.FullName;
             button1.Text = Resource_felirat.Add;
             button2.Text = Resource_felirat.WriteFile;
+            button3.Text = Resource_felirat.Del;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -54,6 +55,12 @@ namespace UserMaintenance
                     sw.WriteLine();
                 }
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            User torlendo = (User)listBox1.SelectedItem;
+            users.Remove(torlendo);
         }
     }
 }
