@@ -21,8 +21,7 @@ namespace UserMaintenance
             listBox1.DataSource = users;
             listBox1.ValueMember = "ID";
             listBox1.DisplayMember = "FullName";
-            label1.Text = Resource_felirat.LastName;
-            label2.Text = Resource_felirat.FirstName;
+            label1.Text = Resource_felirat.FullName;
             button1.Text = Resource_felirat.Add;
         }
 
@@ -30,8 +29,7 @@ namespace UserMaintenance
         {
             var u = new User()
             {
-                LastName = textBox1.Text,
-                FirstName = textBox2.Text
+                FullName = textBox1.Text,
             };
             users.Add(u);
         }
