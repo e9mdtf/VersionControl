@@ -80,17 +80,18 @@ namespace excel_export_e9mdtf
                 values[counter, 5] = f.NumberOfRooms;
                 values[counter, 6] = f.FloorArea;
                 values[counter, 7] = f.Price;
-                values[counter, 8] = "=";
+                values[counter, 8] = "=" + GetCell(counter + 2, headers.Length - 1).ToString() + "*" + "1000000" + "/" + GetCell(counter + 2, headers.Length - 2).ToString();
                 counter++;
             }
             xlWorkSheet.get_Range(
                 GetCell(2, 1),
                 GetCell(1 + values.GetLength(0), values.GetLength(1))).Value2 = values;
-
+            int lastRowID = xlWorkSheet.UsedRange.Rows.Count;
+            int lastColID = xlWorkSheet.UsedRange.Columns.Count;
             Excel.Range headerRange = xlWorkSheet.get_Range(GetCell(1, 1), GetCell(1, headers.Length));
             Excel.Range tableRange = xlWorkSheet.get_Range(GetCell(1, 1), GetCell(1 + values.GetLength(0), values.GetLength(1)));
-            Excel.Range firstRow = xlWorkSheet.get_Range(GetCell(1, 1), GetCell(1, values.GetLength(1)));
-            Excel.Range lastRow = xlWorkSheet.get_Range(GetCell(1 + values.GetLength(0), 1), GetCell(1 + values.GetLength(0), values.GetLength(1)));
+            Excel.Range firstRow = xlWorkSheet.get_Range(GetCell(lastRowID, 1), GetCell(2,1));
+            Excel.Range lastRow = xlWorkSheet.get_Range(GetCell(2, lastColID), GetCell(lastRowID, lastColID));
             headerRange.Font.Bold = true;
             headerRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
             headerRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
