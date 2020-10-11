@@ -24,25 +24,6 @@ namespace varcalculator
             Ticks = context.Ticks.ToList();
             dataGridView1.DataSource = Ticks;
             CreatePortfolio();
-            List<decimal> Nyereségek = new List<decimal>();
-            int intervalum = 30;
-            DateTime kezdőDátum = (from x in Ticks select x.TradingDay).Min();
-            DateTime záróDátum = new DateTime(2016, 12, 30);
-            TimeSpan z = záróDátum - kezdőDátum;
-            for (int i = 0; i < z.Days - intervalum; i++)
-            {
-                decimal ny = GetPortfolioValue(kezdőDátum.AddDays(i + intervalum))
-                           - GetPortfolioValue(kezdőDátum.AddDays(i));
-                Nyereségek.Add(ny);
-                Console.WriteLine(i + " " + ny);
-            }
-
-            var nyereségekRendezve = (from x in Nyereségek
-                                      orderby x
-                                      select x)
-                                         .ToList();
-            MessageBox.Show(nyereségekRendezve[nyereségekRendezve.Count() / 5].ToString());
-            kiirando = nyereségekRendezve.ToList();
         }
         public void CreatePortfolio()
         {
@@ -76,15 +57,37 @@ namespace varcalculator
             save.Filter = "Comma Separated Values (*.csv)|*.csv";
             save.AddExtension = true;
             if (save.ShowDialog() != DialogResult.OK) return;
+            List<decimal> Nyereségek = new List<decimal>();
+            int intervalum = 30;
+            DateTime kezdőDátum = (from x in Ticks select x.TradingDay).Min();
+            DateTime záróDátum = new DateTime(2016, 12, 30);
+            TimeSpan z = záróDátum - kezdőDátum;
+            for (int i = 0; i < z.Days - intervalum; i++)
+            {
+                decimal ny = GetPortfolioValue(kezdőDátum.AddDays(i + intervalum))
+                           - GetPortfolioValue(kezdőDátum.AddDays(i));
+                Nyereségek.Add(ny);
+                Console.WriteLine(i + " " + ny);
+
+            }
+
+            var nyereségekRendezve = (from x in Nyereségek
+                                      orderby x
+                                      select x)
+                                         .ToList();
+            MessageBox.Show(nyereségekRendezve[nyereségekRendezve.Count() / 5].ToString());
             using (StreamWriter sw = new StreamWriter(save.FileName, false, Encoding.UTF8))
             {
                 sw.Write("Időszak");
-                sw.Write(";");
+                sw.Write(",");
                 sw.Write("Nyereség");
                 sw.WriteLine();
-                foreach (dynamic p in kiirando)
+                for (int i = 0; i < nyereségekRendezve.Count; i++)
                 {
-                    sw.Write(p.)
+                    sw.Write(i);
+                    sw.Write(",");
+                    sw.Write(nyereségekRendezve[i]);
+                    sw.WriteLine();
                 }
             }
         }
