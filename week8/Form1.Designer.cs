@@ -36,11 +36,17 @@
             this.ballBtn = new System.Windows.Forms.Button();
             this.comingNextLabel = new System.Windows.Forms.Label();
             this.colorBtn = new System.Windows.Forms.Button();
+            this.presentBtn = new System.Windows.Forms.Button();
+            this.boxColorBtn = new System.Windows.Forms.Button();
+            this.ribbonColorBtn = new System.Windows.Forms.Button();
             this.mainPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainPanel
             // 
+            this.mainPanel.Controls.Add(this.ribbonColorBtn);
+            this.mainPanel.Controls.Add(this.boxColorBtn);
+            this.mainPanel.Controls.Add(this.presentBtn);
             this.mainPanel.Controls.Add(this.colorBtn);
             this.mainPanel.Controls.Add(this.comingNextLabel);
             this.mainPanel.Controls.Add(this.ballBtn);
@@ -87,7 +93,7 @@
             // 
             this.comingNextLabel.AutoSize = true;
             this.comingNextLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.comingNextLabel.Location = new System.Drawing.Point(198, 12);
+            this.comingNextLabel.Location = new System.Drawing.Point(350, 12);
             this.comingNextLabel.Name = "comingNextLabel";
             this.comingNextLabel.Size = new System.Drawing.Size(115, 20);
             this.comingNextLabel.TabIndex = 2;
@@ -102,6 +108,36 @@
             this.colorBtn.TabIndex = 3;
             this.colorBtn.UseVisualStyleBackColor = false;
             this.colorBtn.Click += new System.EventHandler(this.colorBtn_Click);
+            // 
+            // presentBtn
+            // 
+            this.presentBtn.Location = new System.Drawing.Point(201, 12);
+            this.presentBtn.Name = "presentBtn";
+            this.presentBtn.Size = new System.Drawing.Size(75, 54);
+            this.presentBtn.TabIndex = 4;
+            this.presentBtn.Text = "Present";
+            this.presentBtn.UseVisualStyleBackColor = true;
+            this.presentBtn.Click += new System.EventHandler(this.presentBtn_Click);
+            // 
+            // boxColorBtn
+            // 
+            this.boxColorBtn.BackColor = System.Drawing.Color.DarkRed;
+            this.boxColorBtn.Location = new System.Drawing.Point(201, 90);
+            this.boxColorBtn.Name = "boxColorBtn";
+            this.boxColorBtn.Size = new System.Drawing.Size(75, 23);
+            this.boxColorBtn.TabIndex = 5;
+            this.boxColorBtn.UseVisualStyleBackColor = false;
+            this.boxColorBtn.Click += new System.EventHandler(this.colorBtn_Click);
+            // 
+            // ribbonColorBtn
+            // 
+            this.ribbonColorBtn.BackColor = System.Drawing.Color.OrangeRed;
+            this.ribbonColorBtn.Location = new System.Drawing.Point(201, 131);
+            this.ribbonColorBtn.Name = "ribbonColorBtn";
+            this.ribbonColorBtn.Size = new System.Drawing.Size(75, 23);
+            this.ribbonColorBtn.TabIndex = 6;
+            this.ribbonColorBtn.UseVisualStyleBackColor = false;
+            this.ribbonColorBtn.Click += new System.EventHandler(this.colorBtn_Click);
             // 
             // Form1
             // 
@@ -126,6 +162,9 @@
         private System.Windows.Forms.Button ballBtn;
         private System.Windows.Forms.Label comingNextLabel;
         private System.Windows.Forms.Button colorBtn;
+        private System.Windows.Forms.Button ribbonColorBtn;
+        private System.Windows.Forms.Button boxColorBtn;
+        private System.Windows.Forms.Button presentBtn;
     }
 }
 

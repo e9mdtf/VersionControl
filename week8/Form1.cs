@@ -36,7 +36,7 @@ namespace week8
             var toy = Factory.CreateNew();
             _toys.Add(toy);
             toy.Left = -toy.Width;
-            toy.Top = mainPanel.Height / 4;
+            toy.Top = mainPanel.Height / 3;
             mainPanel.Controls.Add(toy);
         }
 
@@ -88,6 +88,15 @@ namespace week8
             if (colorPicker.ShowDialog() != DialogResult.OK)
                 return;
             button.BackColor = colorPicker.Color;
+        }
+
+        private void presentBtn_Click(object sender, EventArgs e)
+        {
+            Factory = new PresentFactory
+            {
+                BoxColor = boxColorBtn.BackColor,
+                RibbonColor = ribbonColorBtn.BackColor
+            };
         }
     }
 }
